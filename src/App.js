@@ -6,8 +6,12 @@ import routes from './router/index.js'
 function App() {
   return (
     <Switch>
-    <Route exact path="/" component={Home}/>
-   
+   {
+      routes.map((route,index)=>{
+         return <Route path={route.path}   key={index} component={route.component} />
+      })
+
+   }
   </Switch>
 
   );

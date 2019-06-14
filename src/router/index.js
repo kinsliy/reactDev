@@ -1,27 +1,31 @@
  
  
-import about from ''
-
+import about from '@/pages/about/index.jsx'
+import container from '@/layouts/container/index.jsx'
  
  const routers=[
 
     {
-        path: '/first',
-        component: First,
+        path: '/about',
+        component: about,
         name: '第一个路由',
         routes: [
             {
-                path: '1',
-                component: ChildOne,
-                name: '1-1'
+               
             }
         ]
     },
     {
-        path: 'second',
-        component: Second,
-        name: '第二个路由'
-    }
-
-
+        path: '/back',
+        component: container,
+        name: '后台layout',
+        routes: [
+            {
+               
+            }
+        ]
+    },
+    
  ]
+
+ export default routers;

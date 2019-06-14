@@ -41,6 +41,7 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
+const lessRegex = /\.(less)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
@@ -69,7 +70,7 @@ module.exports = function(webpackEnv) {
   const env = getClientEnvironment(publicUrl);
 
   // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, preProcessor,loaderOptions) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -111,6 +112,7 @@ module.exports = function(webpackEnv) {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
+          ...loaderOptions
         },
       });
     }
@@ -272,6 +274,7 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        '@':path.join(__dirname, '..', 'src'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -388,6 +391,7 @@ module.exports = function(webpackEnv) {
                 sourceMaps: false,
               },
             },
+            
             // "postcss" loader applies autoprefixer to our CSS.
             // "css" loader resolves paths in CSS and adds assets as dependencies.
             // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -438,6 +442,27 @@ module.exports = function(webpackEnv) {
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
             },
+            {
+              test: lessRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                },
+                'less-loader',
+                {
+                 
+                  javascriptEnabled: true
+                  
+                }
+              ),
+              // Don't consider CSS imports dead code even if the
+              // containing package claims to have no side effects.
+              // Remove this when webpack adds a warning or an error for this.
+              // See https://github.com/webpack/webpack/issues/6571
+              sideEffects: true,
+            },
+            
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
             {
