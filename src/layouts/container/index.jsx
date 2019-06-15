@@ -14,21 +14,21 @@ class SiderDemo extends React.Component {
     collapsed: false,
     marginLeft:'256px',
     menuList:[
-      { path:"/back/1",title:"meun1",icon:"book" },
-      { path:"/back/2",title:"meun2",icon:"issues-close",
+      { path:"/back/about",title:"关于页面",icon:"book" },
+      { path:"/back/2",title:"水果页面",icon:"issues-close",
           children:[
-            { title:"meun3",path:"/back/3",icon:"info-circle",children:[
-                { title:"meun4",path:"/back/3/4",icon:"bars"},
-                { title:"meun5",path:"/back/3/5",icon:"bars"},
+            { title:"苹果",path:"/back/3",icon:"info-circle",children:[
+                { title:"桃子",path:"/back/3/4",icon:"bars"},
+                { title:"西瓜",path:"/back/3/5",icon:"bars"},
                 { title:"meun6",path:"/back/3/6",icon:"bars"},
                 { title:"meun7",path:"/back/3/7",icon:"bars" }
               ] },
-            { title:"meun8",path:"/8",icon:"branches",children:[
-                { title:"meun9",path:"/9",icon:"bars" },
-                { title:"meun10",path:"/10",icon:"bars" },
+            { title:"meun8",path:"/back/8",icon:"branches",children:[
+                { title:"meun9",path:"/back/9",icon:"bars" },
+                { title:"meun10",path:"/back/10",icon:"bars" },
               ] },
-            { title:"meun11",path:"/11",icon:"bars" },
-            { title:"meun12",path:"/12",icon:"bars"},
+            { title:"meun11",path:"/back/11",icon:"bars" },
+            { title:"meun12",path:"/back/12",icon:"bars"},
           ]
        }
     ],
@@ -62,9 +62,9 @@ class SiderDemo extends React.Component {
           <Layout style={{ marginLeft: this.state.marginLeft }} >
           <HeaderCommon   />
 
-          <ContentCommon  />
+          <ContentCommon {...this.props} />
           
-          <FooterCommon />
+          <FooterCommon  />
         </Layout>
  
       </Layout>
