@@ -6,6 +6,8 @@ import {Button} from 'antd';
 import types from '@/store/about/types.js'
 
 const app = (props)=>{
+
+
     const plus=()=>{
 
         props.dispatch({
@@ -13,6 +15,17 @@ const app = (props)=>{
             data:{
                 type:'count',
                 value:props.count+1
+            },
+           
+        })
+    }
+
+    const fet=()=>{
+
+        props.dispatch({
+            type:types.getList,
+            data:{
+               a:1213,
             }
         })
     }
@@ -21,8 +34,12 @@ const app = (props)=>{
     return(
         <div className='about'>
             关于页面{props.count}
-
+            <div>
             <Button type="primary" onClick={plus} >点击增加数字</Button>
+            </div>
+            <div>
+            <Button type="primary" onClick={fet} >发送请求</Button>
+            </div>
         </div>
     )
 }

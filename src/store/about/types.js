@@ -2,8 +2,8 @@
 const title ='about';
 
 const types ={
-    changeData:title+'changeData'
-
+    changeData:title+'changeData',
+    getList:title+'getList',
 }
 
 export default types;

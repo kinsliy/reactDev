@@ -1,6 +1,9 @@
+/* eslint-disable no-fallthrough */
 // 将state导入 建立reducer函数
 import _state from './state.js';
 import types from './types.js'
+import {getList} from '@/fetch/about/index.js'
+
 
 let reducer = (state=_state,action)=>{
     switch (action.type) {
@@ -8,13 +11,24 @@ let reducer = (state=_state,action)=>{
             const {type,value} =action.data
             state[type]=value
           return Object.assign({}, state,);
-        case types:
-          return Object.assign({}, state, {
-            todos: [...state.todos, {
-              text: action.text,
-              completed: false
-            }]
-          });
+        case types.getList:
+           const a =getList(action.data).then(data=>{
+                console.log(data)
+                state.count=data.data.data.uid;
+                console.log(state)
+                return Object.assign({}, state,);
+            });
+
+            console.log(a)
+            
+
+
+        //   return Object.assign({}, state, {
+        //     todos: [...state.todos, {
+        //       text: action.text,
+        //       completed: false
+        //     }]
+        //   });
         default:
           return state;
       }
