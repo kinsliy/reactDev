@@ -1,15 +1,29 @@
+/* eslint-disable no-useless-constructor */
 import React from "react";
 
 import "./index.less";
 import { Layout, Menu, Icon } from 'antd';
 
-const { Header, Sider, Content } = Layout;
+const { Sider,  } = Layout;
 const { SubMenu } = Menu;
 class app extends React.Component{
       
      constructor(props){
         super(props)
      }
+
+     state = {
+        collapsed: false,
+      };
+    
+      toggleCollapsed = () => {
+        this.setState({
+          collapsed: !this.state.collapsed,
+        },()=>{
+            this.props.changeMargin(this.state.collapsed);
+        });
+        
+      };
 
 
      render(){
@@ -22,7 +36,7 @@ class app extends React.Component{
               position: 'fixed',
               left: 0,
             }}
-            collapsible
+            collapsible collapsed={this.state.collapsed} onCollapse={this.toggleCollapsed}
             width='256'
           >
             <div className="logo" >
