@@ -47,10 +47,10 @@ function App (props){
         <div className='about'>
             关于页面{props.count}
             <div>
-            <Button type="primary" onClick={fet}>点击增加数字</Button>
+            <Button type="primary" onClick={plus}>点击增加数字</Button>
             </div>
             <div>
-            <Button type="primary"  >发送请求</Button>
+            <Button type="primary" onClick={fet} >发送请求</Button>
             </div>
         </div>
     )

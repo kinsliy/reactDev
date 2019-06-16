@@ -12,14 +12,9 @@ let reducer = (state=_state,action)=>{
             state[type]=value
           return Object.assign({}, state,);
         case types.getList:
-           const a =getList(action.data).then(data=>{
-                console.log(data)
-                state.count=data.data.data.uid;
-                console.log(state)
-                return Object.assign({}, state,);
-            });
+           
 
-            console.log(a)
+           
             
 
 

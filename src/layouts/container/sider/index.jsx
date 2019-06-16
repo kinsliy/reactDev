@@ -98,7 +98,9 @@ class app extends React.Component{
               position: 'fixed',
               left: 0,
             }}
-            collapsible collapsed={this.state.collapsed} onCollapse={this.toggleCollapsed}
+           
+            collapsed={this.state.collapsed}
+             onCollapse={this.toggleCollapsed}
             width='256'
           >
             <div className="logo" >
